@@ -25,6 +25,14 @@ export const RQSuperHeroesPage = () => {
     //If you go to RQ and go back to home page 'super-heros' will be agrbage collected after 5secs
     {
       cacheTime: 5000,
+      //Say you know that your data doesn't change often and it's okay if your user sees the updated data after 30s
+      //We know that the data is fetched in the bg even if we cache it
+      //What if we don't want to fetch the data again if the user navigates to this page?
+      //We can set a stale time and during that time if we go to that page again and again API call wil not be made
+      //It stays in fresh state for 30s and then go to stale state
+      staleTime: 30000,
+      //In this case no call would be made for 30s after 1st call
+      //By default it is 0s
     }
   );
 
