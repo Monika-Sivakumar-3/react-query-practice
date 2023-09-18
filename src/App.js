@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 import { HomePage } from "./components/Home.page";
@@ -32,6 +33,11 @@ function App() {
           </Routes>
         </>
       </Router>
+      {/* React-Query comes with inbuilt dev tools
+        We have two options floating and embedded
+        We can send initialIsOpen(don't want to open devtools by default) prop and also style the toggle */}
+      <ReactQueryDevtools initialIsOpen={false} />
+      {/* Now you can see a button to open y=the dev tools by default it will be in left bottom */}
     </QueryClientProvider>
   );
 }

@@ -8,7 +8,7 @@ export const RQSuperHeroesPage = () => {
 
   //We can also get more infos like isLoading from useQuery
   const { isLoading, data, isError, error } = useQuery("super-heroes", () => {
-    return axios.get("http://localhost:4000/superheroes1");
+    return axios.get("http://localhost:4000/superheroes");
   });
   if (isError) return <h2>{error.message}</h2>;
   if (isLoading) return <h1>Loading...</h1>;
