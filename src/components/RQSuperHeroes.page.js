@@ -7,9 +7,10 @@ export const RQSuperHeroesPage = () => {
   //Remember: In the previous example(super heroes file) we used two states loading and data to determine the data feched result and to display it
 
   //We can also get more infos like isLoading from useQuery
-  const { isLoading, data } = useQuery("super-heroes", () => {
-    return axios.get("http://localhost:4000/superheroes");
+  const { isLoading, data, isError, error } = useQuery("super-heroes", () => {
+    return axios.get("http://localhost:4000/superheroes1");
   });
+  if (isError) return <h2>{error.message}</h2>;
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <>
