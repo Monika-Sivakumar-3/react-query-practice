@@ -24,6 +24,17 @@ export const RQSuperHeroesPage = () => {
       //We can pass callback functions(onSuccess and onError) which will execute on success or failure
       onSuccess,
       onError,
+
+      //say you want to transform your data. eg: you want only a particular data from the response.
+      //Here we want only super hero names
+      //We can make use of select attribute which takes a call back function
+
+      select: (data) => {
+        const superHeroNames = data.data.map((hero) => hero.name);
+        return superHeroNames;
+      },
+
+      //We can also filter data in select
     }
   );
 
@@ -32,10 +43,17 @@ export const RQSuperHeroesPage = () => {
   return (
     <>
       <h2>RQSuperHeroes Page</h2>
-      {data?.data.map((hero) => (
+      {/* {data?.data.map((hero) => (
         <div>{hero.name}</div>
-      ))}
+      ))} */}
       {/* We can enable the call by executing the refetch function which we get fron useQuery function */}
+
+      {/* Now we will receive only array of names as response */}
+
+      {data?.map((heroName) => (
+        <div>{heroName}</div>
+      ))}
+
       <button onClick={refetch}>Fetch SuperHeroess</button>
     </>
   );
