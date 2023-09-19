@@ -6,8 +6,10 @@ export const RQSuperHeroesPage = () => {
   //We will have to rewrite this code in all those components
   //To avoid this we are going to create a custom hook
 
-  const { isLoading, data, isError, error, refetch } =
-    useSuperHeroesData(false);
+  const { isLoading, data, isError, error, refetch } = useSuperHeroesData({
+    enabled: false,
+    onSuccess: (data) => console.log("Success", data),
+  });
 
   if (isError) return <h2>{error.message}</h2>;
   if (isLoading) return <h1>Loading...</h1>;
