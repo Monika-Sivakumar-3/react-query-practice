@@ -1,10 +1,13 @@
-import axios from "axios";
-import { useQuery } from "react-query";
+import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 export const RQSuperHeroesPage = () => {
-  const { isLoading, data, isError, error } = useQuery("super-heroes", () => {
-    return axios.get("http://localhost:4000/superheroes");
-  });
+  //This is good for our app but it is not so effecient for larger Apps
+  //What is more components need this data
+  //We will have to rewrite this code in all those components
+  //To avoid this we are going to create a custom hook
+
+  const { isLoading, data, isError, error, refetch } =
+    useSuperHeroesData(false);
 
   if (isError) return <h2>{error.message}</h2>;
   if (isLoading) return <h1>Loading...</h1>;
@@ -14,6 +17,7 @@ export const RQSuperHeroesPage = () => {
       {data?.data.map((hero) => (
         <div>{hero.name}</div>
       ))}
+      <button onClick={refetch}>Fetch</button>
     </>
   );
 };
