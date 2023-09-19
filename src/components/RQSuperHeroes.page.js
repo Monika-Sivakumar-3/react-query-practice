@@ -17,7 +17,10 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>RQSuperHeroes Page</h2>
       {data?.data.map((hero) => (
-        <div>{hero.name}</div>
+        <>
+          <a href={`/rq-super-heroes/${hero.id}`}>{hero.name}</a>
+          <br />
+        </>
       ))}
       <button onClick={refetch}>Fetch</button>
     </>
